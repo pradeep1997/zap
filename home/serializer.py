@@ -65,3 +65,12 @@ class TaskSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Task
 		fields = ('title', 'user', 'desc', 'date', 'status')
+
+	def validate(self, data):
+		if self.context['request'].method == 'POST':
+			if self.context['request'].user.role == 'Employee':
+				raise serializers.ValidationError({"Permission":'You have not permission to perform this action!'})
+		if self.context['request'].method == 'PATCH' or self.context['request'].method == 'PUT':
+			if self.context['request'].user.role == 'Client':
+				raise serializers.ValidationError({"Permission":'You have not permission to perform this action!'})
+		return data

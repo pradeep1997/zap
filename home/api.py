@@ -14,7 +14,15 @@ class TaskView(viewsets.ModelViewSet):
 	serializer_class = TaskSerializer
 	queryset = Task.objects.all().order_by('-id')
 	filter_fields = ['title','user','date']
-	http_method_names = ['get','post', 'put', 'patch', 'delete']
+	# http_method_names = ['get','post', 'put', 'patch', 'delete']
+
+	def _allowed_methods(self):
+		if self.request.user.role == 'Employee':
+			return ['get', 'patch']
+		if self.request.user.role == 'Client':
+			return ['post']
+		if self.request.user.role == 'Manager':
+			return ['get','post', 'put', 'patch', 'delete']
 
 class UserLoginView(viewsets.ModelViewSet):
 	permission_classes = ((AllowAny,))
