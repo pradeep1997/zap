@@ -18,16 +18,9 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from rest_framework.routers import DefaultRouter
-from home.apiurls import router as home_router
-
-router = DefaultRouter()
-router.registry.extend(home_router.registry)
-
 urlpatterns = [
     path('zap/', admin.site.urls),
-    path('api/v1/', include(router.urls)),
-    path('api/v1/', include('home.apiurls')),
+    path('', include('home.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
