@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'ckeditor',
+    'ckeditor_uploader',
     'rest_framework.authtoken',
     'django_filters',
     'home',
@@ -75,7 +77,30 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'zap.wsgi.application'
 
-
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': (
+            ['div', 'Source', 'NewPage', 'Templates'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord',
+                '-', 'Print', 'SpellChecker', 'Scayt'],
+            ['Undo', 'Redo', '-', 'Find', 'Replace', 'RemoveFormat'],
+            ['Button', 'ImageButton'],
+            ['Bold', 'Italic', 'Underline', 'Strike',
+                '-', 'Subscript', 'Superscript'],
+            ['NumberedList', 'BulletedList', '-',
+                'Outdent', 'Indent', 'Blockquote'],
+            ['JustifyLeft', 'JustifyCenter',
+                'JustifyRight', 'JustifyBlock', 'Language'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Iframe', 'Table', 'HorizontalRule',
+                'Smiley', 'SpecialChar', 'PageBreak'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+            ['Maximize', 'ShowBlocks'],
+        ),
+    }
+}
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 # mySQL database configuration

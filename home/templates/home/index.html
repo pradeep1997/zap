@@ -31,24 +31,24 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="h-100 rounded p-3 about-us">
                         <p class="text-primary text-uppercase mb-2">// About Us</p>
-                        <h1 class="display-6 mb-4">We Bake Every Item From The Core Of Our Hearts</h1>
+                        <h1 class="display-6 mb-4">We Create Every Event From The Core Of Our Hearts</h1>
                         <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
                         <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
                         <div class="row g-2 mb-4">
-                            <div class="col-sm-6">
-                                <i class="fa fa-check text-primary me-2"></i>Quality Products
+                            <div class="col-sm-6 text-white">
+                                <i class="fa fa-check text-white me-2"></i>Quality Products
                             </div>
-                            <div class="col-sm-6">
-                                <i class="fa fa-check text-primary me-2"></i>Custom Products
+                            <div class="col-sm-6 text-white">
+                                <i class="fa fa-check text-white me-2"></i>Custom Products
                             </div>
-                            <div class="col-sm-6">
-                                <i class="fa fa-check text-primary me-2"></i>Online Order
+                            <div class="col-sm-6 text-white">
+                                <i class="fa fa-check text-white me-2"></i>Online Order
                             </div>
-                            <div class="col-sm-6">
-                                <i class="fa fa-check text-primary me-2"></i>Home Delivery
+                            <div class="col-sm-6 text-white">
+                                <i class="fa fa-check text-white me-2"></i>Home Delivery
                             </div>
                         </div>
-                        <a class="btn btn-primary rounded-pill py-3 px-5" href="">Read More</a>
+                        <a class="btn btn-primary rounded-pill py-3 px-5" data-bs-toggle="modal" href="#readmoreModal">Read More</a>
                     </div>
                 </div>
             </div>
@@ -61,8 +61,8 @@
     <div class="container-xxl text-light my-6 py-6 pt-0">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="text-primary text-uppercase mb-2">// Bakery Products</p>
-                <h1 class="display-6 mb-4">Explore The Categories Of Our Bakery Products</h1>
+                <p class="text-primary text-uppercase mb-2">// Features</p>
+                <h1 class="display-6 mb-4">Explore The Categories Of Our Online Event Features</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -113,16 +113,30 @@
     <!-- Product End -->
 
     <!-- Blog Start -->
-    <div class="container-xxl text-light my-6 py-6 pb-0">
+    <!-- <div class="container d-flex align-items-center justify-content-center position-relative flex-wrap"> -->
+    <div class="container d-flex align-items-center justify-content-center position-relative flex-wrap">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="text-primary text-uppercase mb-2">// Client's Review</p>
-                <h1 class="display-6 mb-4">More Than 20000+ Customers Trusted Us</h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-12 fadeInUp"></div>
+                <p class="text-primary text-uppercase mb-2">// Read out blogs</p>
+                <h1 class="display-6 mb-4">More Than 200+ Blogs written by Us</h1>
             </div>
         </div>
+        <div class="row justify-content-center">
+            {% for post in posts %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card d-flex position-relative flex-column fadeInUp">
+                    <div class='imgContainer'>
+                        <img src='https://images.pexels.com/photos/1456268/pexels-photo-1456268.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'>
+                    </div>
+                    <div class="content">
+                        <h2>{{post.title |truncatechars:50}}</h2>
+                        <p class="text-dark">{{post.desc |truncatechars:200}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="" class="ms-auto">Read More</a>
     </div>
     <!-- Blog End -->
 
