@@ -1,0 +1,131 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+<!-- Blog Start -->
+<div class="container mt-5">
+  <div class="row p-5 justify-content-around">
+    <div class="col-lg-8 col-md-8 col-sm-12 p-3 bg-white rounded">
+      <h2>{{post.title | capfirst}}</h2>
+      <p class="text-dark"><span> Written By: {{post.author.full_name | title}}</span> <a class="bg-primary p-1 rounded" href="">{{post.category.title | title}}</a></p>
+      <div class="row mb-3">
+        <div class="col-12">
+        {{post.desc | capfirst}}
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-12">
+          <img src="{{post.image.url}}" width="100%" height="300px" alt="post_image">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          {{post.content | safe}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form class="comment-form">
+            {% csrf_token %}
+             <h3 class="mb-3">Leave a Comment</h3>
+            <div class="row mb-3">
+
+              <div class="col">
+                <input type="text" name="name" class="form-control" placeholder="Full Name" aria-label="Full Name" required>
+              </div>
+              <div class="col">
+                <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Say something here..." required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Post comment</button>
+          </form>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="comments">
+            {% for comment in comments %}
+            <div class="d-flex">
+                <div class="thumb">
+                    <img src="{% static 'img/user.png' %}" class="user-story-image">
+                </div>
+                <div class="">
+                    <h6><a href="#">{{comment.name}}</a></h6>
+                    <small>{{comment.timestamp}}</small>
+                </div>
+                <button class="ml-auto btn-reply text-uppercase reply-btns btn btn-primary" data-id="{{comment.id}}">Reply</button>
+            </div>
+            <p class="comment-content">{{comment.content}}</p>
+            <form class="reply-forms reply-form{{comment.id}} mb-3">
+                <input type="hidden" name="comment_id" value="{{comment.id}}">
+                <div class="row mb-3">
+                  <div class="col">
+                    <input type="text" name="name" class="form-control" placeholder="Full Name" aria-label="Full Name" required>
+                  </div>
+                  <div class="col">
+                    <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Say something here..." required></textarea>
+                </div>
+                <button class="main-btn" type="submit">Post comment</button>
+            </form>
+            {% if comment.replies.all %}
+            <div class="replys replys{{comment.id}} ms-5 pl-3">
+                {% for reply in comment.replies.all %}
+                <div class="d-flex">
+                    <div class="thumb">
+                        <img src="{% static 'img/user.png' %}" class="user-story-image1">
+                    </div>
+                    <div>
+                        <h6><a href="#">{{reply.name}}</a></h6>
+                        <small>{{reply.timestamp}}</small>
+                    </div>
+                </div>
+                <p class="comment-content1">{{reply.content}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 bg-white p-3 rounded">
+      <div class="tags p-3">
+        <h6>Tags:</h6>
+        {% for tag in tags %}
+        <p>
+          <a href="" class="bg-primary p-2 rounded">{{tag.title}}</a>
+        </p>
+        {% endfor %}
+      </div>
+      <div class="cats p-3">
+        <h6>Categories:</h6>
+        {% for cat in cats %}
+        <p>
+          <a href="" class="bg-primary p-2 rounded">{{cat.title}}</a>
+        </p>
+        {% endfor %}
+      </div>
+      <div class="popular-posts p-3">
+        <h6>Popular Posts:</h6>
+        {% for ppost in pposts %}
+        <div class="card p-0">
+          <img src="{{ppost.image.url}}" class="card-img-top" alt="{{ppost.title}}">
+          <div class="card-body">
+            <h5 class="card-title">{{ppost.title | capfirst | truncatechars:30}}</h5>
+            <p class="card-text">{{ppost.desc | capfirst | truncatechars:40}}</p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Blog End -->
+{% endblock %}

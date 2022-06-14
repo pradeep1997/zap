@@ -8,6 +8,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <meta name="url" content="{{request.build_absolute_uri}}">
+    <meta name="csrf_token" content="{{csrf_token}}">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -171,6 +173,7 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/blog.js' %}"></script>
 </body>
 
 </html>

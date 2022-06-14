@@ -4,25 +4,46 @@
     height: 450px;
     margin: 30px 10px;
     padding: 20px 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
     transition: 0.3s ease-in-out;
+    position: relative;
 }  
 .container .card .imgContainer
 {
     position: relative;
     width:250px;
-    height:250px;
+    height:167px;
     top:-50px;
     left:10px;
     z-index: 1;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 .container .card .imgContainer img
 {
     max-width: 100%;
     border-radius: 4px;
 }
+.container .card .content{
+    height: 250px !important;
+    max-height: 250px !important;
+    min-height: 250px !important;
+}
+.blog-read-more{
+    width: 58% !important;
+    position: relative;
+    top: -4%;
+}
+.popular-posts .card{
+    height: auto !important;
+}
+.reply-btns{
+    padding-left: 42px !important;
+    padding-right: 42px !important;
+    height: 32px !important;
+}
 
+.user-story-image{width: 60px !important; height: 60px !important;}
+.user-story-image1{width: 40px !important; height: 40px !important;}
+.comment-content{margin-left: 10% !important;}
+.comment-content1{margin-left: 7% !important;}
 @media (max-width: 330px){
     .container .card .imgContainer{
         left: -2px;

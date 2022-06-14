@@ -31,9 +31,12 @@ background: linear-gradient(90deg, rgba(179,183,187,1) 0%, rgba(26,54,97,1) 0%, 
     --light: #FDF5EB;
     --dark: #1E1916;
 }
-p{color: #ffffff !important;}
-.text-primary{color: #ffffff !important;}
+/*p{color: #ffffff !important;}
+.text-primary{color: #ffffff !important;}*/
 
+.navbar-brand h1{
+    color: #ffffff !important;
+}
 h4,
 h5,
 h6,

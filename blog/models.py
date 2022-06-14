@@ -48,5 +48,17 @@ class Post(models.Model):
 		return str(self.title)
 
 
+class Comment(models.Model):
+	post = models.ForeignKey(Post, on_delete=models.PROTECT, related_name='post_comment')
+	reply = models.ForeignKey('self', on_delete=models.PROTECT, related_name='replies', null=True, blank=True)
+	name = models.CharField(max_length=160)
+	email = models.EmailField(max_length=160)
+	content = models.TextField()
+	timestamp = models.DateTimeField(auto_now_add=True, editable=False)
+	utimestamp = models.DateTimeField(auto_now=True, editable=False)
+	track = models.TextField(blank=True, editable=False)
+	utrack = models.TextField(blank=True, editable=False)
+	status = models.CharField(max_length=20, choices=status, default='Active')
 
-	
+	def __str__(self):
+		return str(self.name)
