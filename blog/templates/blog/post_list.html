@@ -1,0 +1,46 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+<!-- Blog Start -->
+<div class="container d-flex align-items-center justify-content-center position-relative flex-wrap mt-5">
+    <div class="row justify-content-center mt-5">
+        {% for post in page_obj %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card d-flex position-relative flex-column fadeInUp">
+                <div class='imgContainer'>
+                    <img src='https://images.pexels.com/photos/1456268/pexels-photo-1456268.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'>
+                </div>
+                <div class="content">
+                    <h2>{{post.title |truncatechars:50}}</h2>
+                    <p class="text-dark">{{post.desc |truncatechars:200}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% if page_obj.has_other_pages %}
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+    {% endif %}
+    {% for i in page_obj.paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
+<!-- Blog End -->
+{% endblock %}
